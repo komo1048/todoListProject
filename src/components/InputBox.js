@@ -1,17 +1,32 @@
+import { useRef } from "react";
 import classes from "./InputBox.module.css";
 
-const InputBox = () => {
+const InputBox = (props) => {
+  const enteredTodo = useRef();
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    props.enteredItem(enteredTodo.current.value);
+  };
+
+  const ontextReset = () => {};
   return (
     <div className={classes.todoapp__inputbox}>
-      <input
-        type="text"
-        name="todoItem"
-        placeholder="할 일"
-        className={classes.todoapp__inputbox_inp}
-      />
-      <button type="submit" className={classes.todoapp__inputbox_add_btn}>
-        추가
-      </button>
+      <form onSubmit={onSubmitHandler}>
+        <input
+          type="text"
+          name="todoItem"
+          placeholder="할 일"
+          className={classes.todoapp__inputbox_inp}
+          ref={enteredTodo}
+        />
+        <button
+          className={classes.todoapp__inputbox_add_btn}
+          onClick={ontextReset}
+        >
+          추가
+        </button>
+      </form>
     </div>
   );
 };
