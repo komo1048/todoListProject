@@ -13,6 +13,7 @@ function App() {
   };
 
   const onRemoveItemHandler = (itemId) => {
+    console.log("remove button click");
     setEnteredTodoItem((prevItem) => {
       return prevItem.filter((item) => item.id !== itemId);
     });

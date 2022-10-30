@@ -6,10 +6,10 @@ const InputBox = (props) => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    console.log("submit click");
     props.enteredItem(enteredTodo.current.value);
   };
 
-  const ontextReset = () => {};
   return (
     <div className={classes.todoapp__inputbox}>
       <form onSubmit={onSubmitHandler}>
@@ -20,10 +20,7 @@ const InputBox = (props) => {
           className={classes.todoapp__inputbox_inp}
           ref={enteredTodo}
         />
-        <button
-          className={classes.todoapp__inputbox_add_btn}
-          onClick={ontextReset}
-        >
+        <button type="submit" className={classes.todoapp__inputbox_add_btn}>
           추가
         </button>
       </form>

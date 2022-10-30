@@ -11,7 +11,7 @@ const TodoItem = (props) => {
       <button
         type="button"
         className={classes.todoapp__item_delete_btn}
-        onClick={props.removeItem(props.id)}
+        onClick={props.removeItem.bind(null, props.id)}
       >
         🗑
       </button>
