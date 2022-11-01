@@ -30,3 +30,30 @@
 .todoapp__item_edit_btn {
   margin-right: 3px;
 }
+
+/* ToDo App Input Box */
+.todoapp__inputbox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.todoapp__inputbox_inp {
+  flex: 1;
+  border: none;
+  border-bottom: 1px solid #f1f3f5;
+  padding: 10px;
+  height: 50px;
+  box-sizing: border-box;
+}
+.todoapp__inputbox_inp:focus {
+  outline: none;
+}
+.todoapp__inputbox_add_btn {
+  border: none;
+  border-radius: 0;
+  background-color: #d0ebff;
+  color: #1c7ed6;
+  height: 50px;
+  width: 50px;
+  font-weight: bold;
+}

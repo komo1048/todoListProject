@@ -19,11 +19,28 @@ function App() {
     });
   };
 
+  const updateItemHandler = (itemId, itemText) => {
+    setEnteredTodoItem((prevItem) => {
+      prevItem.filter((item) => {
+        if (item.id === itemId) {
+          item.text = itemText;
+        }
+
+        return item;
+      });
+      return [...prevItem];
+    });
+  };
+
   return (
     <div className={classes.homepage__container}>
       <h1>Todo List</h1>
       <InputBox enteredItem={itemHandler} />
-      <TodoList todoItem={enteredTodoItem} removeItem={onRemoveItemHandler} />
+      <TodoList
+        todoItem={enteredTodoItem}
+        removeItem={onRemoveItemHandler}
+        updateItem={updateItemHandler}
+      />
     </div>
   );
 }

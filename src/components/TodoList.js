@@ -13,6 +13,7 @@ const TodoList = (props) => {
               id={item.id}
               item={item.text}
               removeItem={props.removeItem}
+              updateItem={props.updateItem}
             />
           );
         })}
