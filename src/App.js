@@ -1,5 +1,5 @@
 import TodoList from "./components/TodoList";
-import classes from "./App.css";
+import classes from "./App.module.css";
 import InputBox from "./components/InputBox";
 import { useState } from "react";
 
@@ -33,8 +33,8 @@ function App() {
   };
 
   return (
-    <div className={classes.homepage__container}>
-      <h1>Todo List</h1>
+    <div className={classes.homePage__container}>
+      <h1 style={{ "text-align": "center" }}>Todo List</h1>
       <InputBox enteredItem={itemHandler} />
       <TodoList
         todoItem={enteredTodoItem}
