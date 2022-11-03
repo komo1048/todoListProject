@@ -1,45 +1,54 @@
 import TodoList from "./components/TodoList";
 import classes from "./App.module.css";
 import InputBox from "./components/InputBox";
-import { useState } from "react";
+import { useReducer } from "react";
+
+let idCount = 0;
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "ADD":
+      idCount++;
+      return [...state, { id: idCount, text: action.text }];
+    case "UPDATE":
+      state.filter((item) => {
+        if (item.id === action.id) {
+          item.text = action.text;
+        }
+        return item;
+      });
+      return [...state];
+    case "REMOVE":
+      return [...state.filter((item) => item.id !== action.id)];
+    default:
+      return;
+  }
+};
 
 function App() {
-  const [enteredTodoItem, setEnteredTodoItem] = useState([]);
+  const [todo, dispatch] = useReducer(reducer, []);
 
-  const itemHandler = (item) => {
-    setEnteredTodoItem((prevItem) => {
-      return [...prevItem, { id: prevItem.length, text: item }];
-    });
+  const onAddItemHandler = (item) => {
+    dispatch({ type: "ADD", id: idCount, text: item });
   };
 
   const onRemoveItemHandler = (itemId) => {
-    console.log("remove button click");
-    setEnteredTodoItem((prevItem) => {
-      return prevItem.filter((item) => item.id !== itemId);
-    });
+    console.log("remove");
+    dispatch({ type: "REMOVE", id: itemId });
   };
 
-  const updateItemHandler = (itemId, itemText) => {
-    setEnteredTodoItem((prevItem) => {
-      prevItem.filter((item) => {
-        if (item.id === itemId) {
-          item.text = itemText;
-        }
-
-        return item;
-      });
-      return [...prevItem];
-    });
+  const onUpdateItemHandler = (itemId, itemText) => {
+    console.log("update");
+    dispatch({ type: "UPDATE", id: itemId, text: itemText });
   };
 
   return (
     <div className={classes.homePage__container}>
       <h1 style={{ "text-align": "center" }}>Todo List</h1>
-      <InputBox enteredItem={itemHandler} />
+      <InputBox enteredItem={onAddItemHandler} />
       <TodoList
-        todoItem={enteredTodoItem}
+        todoItem={todo}
         removeItem={onRemoveItemHandler}
-        updateItem={updateItemHandler}
+        updateItem={onUpdateItemHandler}
       />
     </div>
   );
