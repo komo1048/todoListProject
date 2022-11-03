@@ -8,6 +8,7 @@ const InputBox = (props) => {
     event.preventDefault();
     console.log("submit click");
     props.enteredItem(enteredTodo.current.value);
+    enteredTodo.current.value = "";
   };
 
   return (

@@ -28,16 +28,17 @@ function App() {
   const [todo, dispatch] = useReducer(reducer, []);
 
   const onAddItemHandler = (item) => {
+    console.log("ADD");
     dispatch({ type: "ADD", id: idCount, text: item });
   };
 
   const onRemoveItemHandler = (itemId) => {
-    console.log("remove");
+    console.log("REMOVE");
     dispatch({ type: "REMOVE", id: itemId });
   };
 
   const onUpdateItemHandler = (itemId, itemText) => {
-    console.log("update");
+    console.log("UPDATE");
     dispatch({ type: "UPDATE", id: itemId, text: itemText });
   };
 
