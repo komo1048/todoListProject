@@ -1,13 +1,16 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { TodoItemContext } from "../store/TodoItemContext";
 import classes from "./InputBox.module.css";
 
-const InputBox = (props) => {
+const InputBox = () => {
   const enteredTodo = useRef();
+  const todoCtx = useContext(TodoItemContext);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
     console.log("submit click");
-    props.enteredItem(enteredTodo.current.value);
+    console.log("ADD");
+    todoCtx.addItem(enteredTodo.current.value);
     enteredTodo.current.value = "";
   };
 

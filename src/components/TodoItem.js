@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { TodoItemContext } from "../store/TodoItemContext";
 import classes from "./TodoItem.module.css";
 
 const TodoItem = (props) => {
@@ -7,12 +8,15 @@ const TodoItem = (props) => {
 
   const enteredTodo = useRef();
 
+  const todoCtx = useContext(TodoItemContext);
+
   const onUpdateHandler = () => {
     setUpdateBtn((prevState) => !prevState);
   };
 
-  const removeItemHandler = () => {
-    props.removeItem(props.id);
+  const onRemoveItemHandler = () => {
+    console.log("REMOVE");
+    todoCtx.removeItem(props.id);
   };
 
   const onTodoChangeHandler = () => {
@@ -23,7 +27,7 @@ const TodoItem = (props) => {
     event.preventDefault();
     setUpdateBtn((prevState) => !prevState);
 
-    props.updateItem(props.id, todoUpdate);
+    todoCtx.updateItem(props.id, todoUpdate);
   };
 
   return (
@@ -63,7 +67,7 @@ const TodoItem = (props) => {
       <button
         type="button"
         className={classes.todoapp__item_delete_btn}
-        onClick={removeItemHandler}
+        onClick={onRemoveItemHandler}
       >
         🗑
       </button>
